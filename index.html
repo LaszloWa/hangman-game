@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HangMan Game</title>
+    <link rel="stylesheet" type='text/css' href="styles.css">
+</head>
+
+<body>
+    <div class='heading'>
+        <h1>HangMan Game</h1>
+        <p>Welcome to a small game of hangman.</p>
+    </div>
+
+    <div class='hangmanGraphic'>
+        <div class='gallows'>
+            <div class='gallowTop'></div>
+            <div class='gallowRope'></div>
+            <div class='hangman'>
+                <div class='head bodyPart' hidden></div>
+                <div class='body bodyPart' hidden></div>
+                <div class='left-arm bodyPart' hidden></div>
+                <div class='right-arm bodyPart' hidden></div>
+                <div class='left-leg bodyPart' hidden></div>
+                <div class='right-leg bodyPart' hidden></div>
+            </div>
+            <div class='gallowPost'></div>
+            <div class='gallowBaseLeft'></div>
+            <div class='gallowBaseRight'></div>
+            <div class='gallowBaseBottom'></div>
+        </div>
+    </div>
+
+    <div class='modalWrapper'>
+        <div class='modalContent'>
+            <p class='modalText'>Test</p>
+            <div class='modalOptions'>
+                <span class='close newGame'>Yes</span>
+                <span class='close quitGame'>No</span>
+            </div>
+        </div>
+    </div>
+
+    <div class='wordGuessingWrapper'>
+        <div class='wordDisplay'>
+            <button type='button' class='startGame'>Start game</button>
+        </div>
+        <div class='userInput'>
+            <!-- This is where the input field goes-->
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

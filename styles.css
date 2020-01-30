@@ -1,0 +1,203 @@
+.heading {
+    text-align: center;
+}
+
+.hangmanGraphic {
+    height: 275px;
+    margin-bottom: 20px;
+}
+
+/* Styling for the gallows */
+.gallows {
+    margin: auto 60% auto 40%;
+    width: 1vw;
+    
+}
+
+.gallowTop {
+    height: 10px;
+    width: 140px;
+    background: black;
+}
+
+.gallowRope {
+    height: 40px;
+    width: 3px;
+    background: black;
+    position: relative;
+    right: -137px;
+}
+
+.gallowPost {
+    height: 240px;
+    width: 10px;
+    background: black;
+    position: relative;
+    top: -140px;
+}
+
+.gallowBaseLeft {
+    height: 70px;
+    width: 8px;
+    background: black;
+    transform: rotate(35deg);
+    position: relative;
+    top: -206px;
+    right: 18px;
+}
+
+.gallowBaseRight {
+    height: 70px;
+    width: 8px;
+    background: black;
+    transform: rotate(145deg);
+    position: relative;
+    top: -276px;
+    right: -20px;
+}
+
+.gallowBaseBottom {
+    height: 10px;
+    width: 85.5px;
+    background: black;
+    position: relative;
+    top: -284.5px;
+    right: 37.2px;
+}
+
+/* Styling for the hangman */
+.hangman {
+    position: relative;
+    height: 100px;
+    width: 1vw;
+    margin: auto 70% auto 30%;
+    right: -114px;
+}
+
+.head {
+    background: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: 3px solid black;
+}
+
+.body {
+    position: relative;
+    height: 50px;
+    width: 5px;
+    background-color: black;
+    right: -21px;
+}
+
+.left-arm {
+    position: relative;
+    height: 30px;
+    width: 4px;
+    background-color: black;
+    transform: rotate(135deg);
+    margin: 0;
+    top: -49px;
+    right: -10px;
+}
+
+.right-arm {
+    position: relative;
+    height: 30px;
+    width: 4px;
+    background-color: black;
+    transform: rotate(45deg);
+    margin: 0;
+    top: -79px;
+    right: -33px;
+}
+
+.right-leg {
+    position: relative;
+    height: 40px;
+    width: 4px;
+    background-color: black;
+    transform: rotate(155deg);
+    margin: 0;
+    top: -103px;
+    right: -30px;
+}
+
+.left-leg {
+    position: relative;
+    height: 40px;
+    width: 4px;
+    background-color: black;
+    transform: rotate(25deg);
+    margin: 0;
+    top: -63px;
+    right: -13px;
+}
+
+/* Styling of input based lower part of game */
+
+.wordDisplay {
+   display: flex;
+   justify-content: center;
+}
+
+.textField {
+    width: 10px;
+    margin: 10px 10px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.userInput {
+    text-align: center;
+}
+
+/* Styling of start button */
+.startGame {
+    width: 75px;
+    margin: auto;
+}
+
+/* Styling of Modal */
+
+.modalWrapper {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    padding-top: 30%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 5px 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.modalOptions {
+    display: flex;
+}
+
+.close {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #aaaaaa;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
