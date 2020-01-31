@@ -45,7 +45,6 @@ const startGame = () => {
     // Add fields for the letters
     for (let i = 0; i < localState.randomWord.length; i++) {
         const textField = document.createElement('p');
-        console.log(textField)
         textField.classList.add('textField');
         textField.textContent = ` `;
         textField.setAttribute('key', `${localState.randomWord[i]}`);
