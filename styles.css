@@ -5,6 +5,7 @@
 .hangmanGraphic {
     height: 275px;
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 /* Styling for the gallows */
@@ -164,7 +165,8 @@
     display: none; 
     position: fixed;
     z-index: 1;
-    padding-top: 30%;
+    padding-top: 10%;
+    text-align: center;
     left: 0;
     top: 0;
     width: 100%;
