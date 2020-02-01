@@ -4,7 +4,13 @@
 //     }
 // }
 
-const randomWordList = ['Hippopotamus', 'Awkward', 'Bagpipes', 'Banjo', 'Croquet', 'Crypt', 'Dwarves', 'Fishhook', 'Fjord', 'Gazebo', 'Gypsy', 'Haiku', 'Haphazard', 'Hyphen', 'Ivory', 'Jazzy', 'Jiffy', 'Jinx', 'Jukebox', 'Kayak', 'Kiosk', 'Klutz', 'Memento', 'Mystify', 'Numbskull', 'Ostracize', 'Oxygen', 'Pajama', 'Phlegm', 'Pixel', 'Polka', 'Quad', 'Quip', 'Rhythmic', 'Rogue', 'Sphinx', 'Squawk', 'Swivel', 'Toady', 'Twelfth', 'Unzip', 'Waxy', 'Yacht', 'Zealous', 'Zigzag', 'Zippy', 'Zombie',]
+const randomWordLists = {
+    easy: ['Airplane', 'Ears', 'Piano', 'Angry', 'Elephant', 'Pinch', 'Baby', 'Fish', 'Reach', 'Ball', 'Flick', 'Remote', 'Baseball', 'Football', 'Roll', 'Basketball', 'Fork', 'Sad', 'Bounce', 'Giggle', 'Scissors', 'Cat', 'Golf', 'Skip', 'Chicken', 'Guitar', 'Sneeze', 'Chimpanzee', 'Hammer', 'Spin', 'Clap', 'Happy', 'Spoon', 'Cough', 'Horns', 'Stomp', 'Cry', 'Joke', 'Stop', 'Dog', 'Mime', 'Tail', 'Drink', 'Penguin', 'Toothbrush', 'Drums', 'Phone', 'Wiggle', 'Deer', 'Duck', 'Bump', 'Kite', ],
+    
+    medium: ['Birthday', 'Hedgehog', 'Pizza', 'Blanket', 'Helicopter', 'President', 'Bright', 'Hurricane', 'Rainbow', 'Rollercoaster', 'Christmas', 'Light', 'Shadow', 'Coffee', 'Magic', 'Shopping', 'Cradle', 'Makeup', 'Shuffle', 'Marriage', 'Slice', 'Drool', 'Mash', 'Slip n’ slide', 'Electric', 'Measure', 'Smear', 'Excitement', 'Mirror', 'Spider', 'Monster', 'Firefighter', 'Motorcycle', 'Trampoline', 'Flashlight', 'Nightmare', 'Waterfall', 'Garden', 'Nosey', 'Window', 'Giraffe', 'Overwhelmed', 'Heavy', 'Pancakes', 'Photographer', ],
+    
+    hard: ['Hippopotamus', 'Awkward', 'Bagpipes', 'Banjo', 'Croquet', 'Crypt', 'Dwarves', 'Fishhook', 'Fjord', 'Gazebo', 'Gypsy', 'Haiku', 'Haphazard', 'Hyphen', 'Ivory', 'Jazzy', 'Jiffy', 'Jinx', 'Jukebox', 'Kayak', 'Kiosk', 'Klutz', 'Memento', 'Mystify', 'Numbskull', 'Ostracize', 'Oxygen', 'Pajama', 'Phlegm', 'Pixel', 'Polka', 'Quad', 'Quip', 'Rhythmic', 'Rogue', 'Sphinx', 'Squawk', 'Swivel', 'Toady', 'Twelfth', 'Unzip', 'Waxy', 'Yacht', 'Zealous', 'Zigzag', 'Zippy', 'Zombie',],
+}
 
 const localState = {
     randomWord: '',
@@ -13,11 +19,11 @@ const localState = {
 }
 
 // Gets random word from array and adds it to local state
-const getRandomWord = () => {
-    const newRandomWord = randomWordList[Math.floor(Math.random() * randomWordList.length)];
+const getRandomWord = (difficulty) => {
+    const newRandomWord = randomWordLists[difficulty][Math.floor(Math.random() * randomWordLists[difficulty].length)];
 
     localState.randomWord === newRandomWord
-        ? getRandomWord()
+        ? getRandomWord(difficulty)
         : localState.randomWord = newRandomWord;
 }
 
@@ -26,10 +32,11 @@ const startGame = (ifRetry) => {
     // Hides the modal that gets shown at the end of the game (only relevant when starting game n+1)
     document.querySelector('.modalWrapper').style.display = 'none';
 
+    const difficultyLevel = document.querySelector('.difficultySelector').value;
     // If user won last round, or this is first game, generate new word. If user lost last game, keep old word, so that the user can retry.
     ifRetry === 'retry'
         ? null
-        : getRandomWord();
+        : getRandomWord(difficultyLevel);
     console.log(localState.randomWord)
 
     // Set winningCondition in local state equal to length of word. Will be reduced by 1 for every letter correctly guessed
@@ -212,5 +219,5 @@ const addListenerModal = () => {
     })
 }
 
-addListenerStartBtn();
 addListenerModal();
+document.querySelector('.startNewGame').addEventListener('click', resetGame);
