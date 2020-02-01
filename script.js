@@ -14,16 +14,23 @@ const localState = {
 
 // Gets random word from array and adds it to local state
 const getRandomWord = () => {
-    localState.randomWord = randomWordList[Math.floor(Math.random() * randomWordList.length)]
+    const newRandomWord = randomWordList[Math.floor(Math.random() * randomWordList.length)];
+
+    localState.randomWord === newRandomWord
+        ? getRandomWord()
+        : localState.randomWord = newRandomWord;
 }
 
 // Initiates a new game
-const startGame = () => {
+const startGame = (ifRetry) => {
     // Hides the modal that gets shown at the end of the game (only relevant when starting game n+1)
     document.querySelector('.modalWrapper').style.display = 'none';
 
-    //Generate random word
-    getRandomWord();
+    // If user won last round, or this is first game, generate new word. If user lost last game, keep old word, so that the user can retry.
+    ifRetry === 'retry'
+        ? null
+        : getRandomWord();
+    console.log(localState.randomWord)
 
     // Set winningCondition in local state equal to length of word. Will be reduced by 1 for every letter correctly guessed
     localState.winningCondition = localState.randomWord.length;
@@ -142,14 +149,14 @@ const onGameEnd = (result) => {
     const modalText = modal.querySelector('.modalText');
     
     result === 'lose'
-    ? modalText.innerHTML = `Too bad, you didn't manage to solve it this time. Would you like to try again?`
+    ? modalText.innerHTML = `Too bad, you didn't manage to solve it this time. Would you like to retry?`
     : modalText.innerHTML = `Hurray, you solved it, go you! Would you like to play again?`
 
     modal.style.display = 'block'; // default style is 'display: none' to hide the modal
 }
 
-// Resets the game depending on user choice on modal
-const resetGame = () => {
+// Resets the game after the user has WON, depending on user choice on modal
+const resetGame = (ifRetry) => {
     const textfields = document.querySelectorAll('.textField');
     const hangman = document.querySelectorAll('.bodyPart');
     const userInputWrapper = document.querySelector('.userInput');
@@ -171,10 +178,10 @@ const resetGame = () => {
         userInputWrapper.removeChild(userInputWrapper.firstChild)
     }
 
-    // Resert the incorrectCount
+    // Reset the incorrectCount
     localState.incorrectCount = 0;
 
-    startGame()
+    startGame(ifRetry)
 }
 
 // Add various event listeners
@@ -183,9 +190,18 @@ const addListenerStartBtn = () => {
 }
 
 const handleModalBtn = (event) => {
-    event.target.innerHTML === 'Yes'
-        ? resetGame()
-        : location.reload()
+    const modalText = document.querySelector('.modalText').innerHTML
+
+    // If user didn't guess word, let them retry using the same word. If they won, generate new word
+    if (modalText.includes('retry')) {
+        event.target.innerHTML === 'Yes'
+            ? resetGame('retry')
+            : location.reload()
+    } else {
+        event.target.innerHTML === 'Yes'
+            ? resetGame()
+            : location.reload()
+    }
 }
 
 const addListenerModal = () => {
