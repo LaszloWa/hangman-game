@@ -37,7 +37,6 @@ const startGame = (ifRetry) => {
     ifRetry === 'retry'
         ? null
         : getRandomWord(difficultyLevel);
-    console.log(localState.randomWord)
 
     // Set winningCondition in local state equal to length of word. Will be reduced by 1 for every letter correctly guessed
     localState.winningCondition = localState.randomWord.length;
